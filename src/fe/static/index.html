@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Portrait Bg Color Change</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="alert alert-info">
+
+        <div class="container" id="div_portrait">
+            <div class="" id="tip_portrait">Please click the button below and upload a portrait</div>
+            <div class="" id="div_thumbnail" hidden="hidden">
+                <canvas id="thumbnail_canvas"></canvas>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="btn btn-info" onclick="$('#input_file').click()">Upload Portrait Image</div>
+            <input type="file" id="input_file" accept="image/png,image/jpeg,image/jpg,image/bmp"
+                   onchange="showThumbnail()" hidden>
+        </div>
+
+        <div class="container" id="div_setting">
+            Then Select the Bg Color
+            <select class="form-select" aria-label=".form-select-lg example" id="bg_color">
+                <option value="2">Blue</option>
+                <option value="1">Red</option>
+                <option value="0" selected>White</option>
+            </select>
+            <div class="btn btn-success" onclick="convert()">Convert Bg Color</div>
+        </div>
+
+        <div class="container" id="div_result" hidden>
+            <div class="" id="div_thumbnail_res">
+                <canvas id="thumbnail_canvas_res"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function showThumbnail() {
+        let reader = new FileReader();
+        reader.readAsDataURL(document.getElementById('input_file').files[0])
+        reader.onload = function () {
+            var img = new Image();
+            img.src = this.result;
+            img.onload = function () {
+                var thumbnail_canvas = document.getElementById('thumbnail_canvas');
+                thumbnail_canvas.setAttribute('width', img.width.toString());
+                thumbnail_canvas.setAttribute('height', img.height.toString());
+                var cxt = thumbnail_canvas.getContext('2d');
+                cxt.drawImage(img, 0, 0);
+            }
+        }
+        $("#tip_portrait").attr('hidden', 'hidden')
+        $("#div_thumbnail").removeAttr('hidden')
+    }
+
+    function convert() {
+        let img_b64 = ""
+        let reader = new FileReader();
+        reader.readAsDataURL(document.getElementById('input_file').files[0])
+        reader.onload = function () {
+            console.log("going to send")
+            $.ajax({
+                url: "http://" + document.location.hostname + ':8000/inference',
+                type: 'post',
+                dataType: 'json',
+                contentType : 'application/json;charset=UTF-8',
+                data: JSON.stringify({
+                    "rid": "REQ_FE_" + new Date().valueOf().toString(),
+                    "image": this.result.replace(/^data:image\/\w+;base64,/, ""),
+                    'color': $("#bg_color").val()
+                }),
+                success: function (data) {
+                    var img = new Image();
+                    img.src = "data:image/png;base64," + data.image
+                    var thumbnail_canvas = document.getElementById('thumbnail_canvas_res');
+                    thumbnail_canvas.setAttribute('width', img.width.toString());
+                    thumbnail_canvas.setAttribute('height', img.height.toString());
+                    var cxt = thumbnail_canvas.getContext('2d');
+                    cxt.drawImage(img, 0, 0);
+                    $("#div_result").removeAttr('hidden')
+                },
+                fail: function () {
+                    alert('fail');
+                }
+            })
+        }
+    }
+
+
+</script>
+</body>
+</html>

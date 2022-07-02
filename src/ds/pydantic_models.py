@@ -4,10 +4,13 @@ pydantic_models.py
 @time: 2022/6/27 13:57
 @description: 
 """
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, constr, conint
+from typing import Optional
 
 
 class SegmentationRequest(BaseModel):
     """it contains information to do segmentation"""
     rid: str
     image: constr(regex=r'^([A-Za-z0-9+/]{4})*([A-Za-z0-9+/]{4}|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{2}==)$', strict=True)
+    color: Optional[conint(ge=0, le=2)]
+

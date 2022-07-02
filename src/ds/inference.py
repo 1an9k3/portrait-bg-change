@@ -8,7 +8,6 @@ import base64
 import os
 from io import BytesIO
 
-import numpy as np
 from PIL import Image
 
 import torch
@@ -16,12 +15,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-from src.models.modnet import MODNet
-from src.utils.universal import img_to_array
+from models.modnet import MODNet
+from universal import img_to_array
 
 # TODO store in yaml
 
-CKPT_PATH = os.path.join(os.path.dirname(__file__), '..', 'models/ckpt')
+CKPT_PATH = os.path.join(os.path.dirname(__file__), '', 'models/ckpt')
 CKPT_FILENAME = 'modnet_photographic_portrait_matting.ckpt'
 
 
