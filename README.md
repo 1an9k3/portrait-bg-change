@@ -1,4 +1,4 @@
-# Protrait Bg Change
+# Portrait Bg Change
 It's a end-to-end deep learning solution for person who wants to change background color in a particular photo.
 
 I do it just for exercise my skill, not for commercial usage.
@@ -13,4 +13,4 @@ For the propose to make a out-of-the-box solution, I developed its FE, BE as wel
 + FE: ``Bootstrap``(see: https://github.com/twbs/bootstrap)
 
 ## Screenshot
-<img src="screenshot/Screen Shot 2022-07-02 at 20.39.14.png" height="50%">
+<img src="screenshot/Screen Shot 2022-07-02 at 20.39.14.png">
