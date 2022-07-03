@@ -1,5 +1,7 @@
 # Protrait Bg Change
-It's a end-to-end solution for person who wants to change background color in a particular photo.
+It's a end-to-end deep learning solution for person who wants to change background color in a particular photo.
+
+I do it just for exercise my skill, not for commercial usage.
 
 A very frequent use scenario is to change the background color of protrait photos and use one of them as an attachment of their resume, apply sheet and so on.
 
