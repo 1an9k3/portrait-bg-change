@@ -5,7 +5,7 @@ a very frquent use scenario is to change the background color of protrait photos
 for a end-to-end solution, I developed its FE, BE as well as DS(Algorthom) Sections and combined them to a integral web app
 
 ## Screenshot
-![Screen Shot](screenshot/Screen Shot 2022-07-02 at 20.39.14.png)
+<img src="screenshot/Screen Shot 2022-07-02 at 20.39.14.png">
 
 ## Technical Solution
 + Algorithm: ``Modnet``(see: https://github.com/ZHKKKe/MODNet)
