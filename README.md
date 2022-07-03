@@ -8,6 +8,6 @@ for a end-to-end solution, I developed its FE, BE as well as DS(Algorthom) Secti
 ![Screen Shot](screenshot/Screen Shot 2022-07-02 at 20.39.14.png)
 
 ## Technical Solution
-Algorithm: ``Modnet``(see: https://github.com/ZHKKKe/MODNet)
-BE Framework: ``mosec``(see: https://mosecorg.github.io/mosec/)
-FE ``Bootstrap``(see: https://github.com/twbs/bootstrap)
++ Algorithm: ``Modnet``(see: https://github.com/ZHKKKe/MODNet)
++ BE Framework: ``mosec``(see: https://mosecorg.github.io/mosec/) 
++ FE ``Bootstrap``(see: https://github.com/twbs/bootstrap)
